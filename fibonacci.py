@@ -5,6 +5,8 @@ Fibonacci Sequence Implementation
 This module provides multiple ways to calculate Fibonacci numbers.
 """
 
+from functools import lru_cache
+
 
 def fibonacci_iterative(n):
     """
@@ -40,9 +42,13 @@ def fibonacci_iterative(n):
     return b
 
 
+@lru_cache(maxsize=None)
 def fibonacci_recursive(n):
     """
-    Calculate the nth Fibonacci number using a recursive approach.
+    Calculate the nth Fibonacci number using a recursive approach with memoization.
+    
+    This implementation uses @lru_cache decorator to memoize results, improving
+    performance from O(2^n) to O(n) time complexity.
     
     Args:
         n (int): The position in the Fibonacci sequence (0-indexed)
